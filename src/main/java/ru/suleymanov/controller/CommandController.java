@@ -1,7 +1,6 @@
 package ru.suleymanov.controller;
 
 import ru.suleymanov.entity.RecordStatus;
-import ru.suleymanov.entity.dto.QueryParameters;
 import ru.suleymanov.entity.dto.RecordsContainerDto;
 import ru.suleymanov.service.RecordService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,16 +48,16 @@ public class CommandController {
     }
 
     @RequestMapping(value = "/make-record-done", method = RequestMethod.POST)
-    public String makeRecordDone(QueryParameters parameters) {
-        System.out.println("makeRecordDone log");
-        recordService.updateRecordStatus(parameters.getId(), RecordStatus.DONE);
-        return "redirect:/home" + (parameters.getFilter() != null && !parameters.getFilter().isBlank() ? "?filter=" + parameters.getFilter() : "");
+    public String makeRecordDone(@RequestParam int id,
+                                 @RequestParam(name = "filter", required = false) String filterMode) {
+        recordService.updateRecordStatus(id, RecordStatus.DONE);
+        return "redirect:/home" + (filterMode != null && !filterMode.isBlank() ? "?filter=" + filterMode : "");
     }
 
     @RequestMapping(value = "/delete-record", method = RequestMethod.POST)
-    public String deleteRecord(QueryParameters parameters) {
-        System.out.println("deleteRecord log");
-        recordService.deleteRecord(parameters.getId());
-        return "redirect:/home" + (parameters.getFilter() != null && !parameters.getFilter().isBlank() ? "?filter=" + parameters.getFilter() : "");
+    public String deleteRecord(@RequestParam int id,
+                               @RequestParam(name = "filter", required = false) String filterMode) {
+        recordService.deleteRecord(id);
+        return "redirect:/home" + (filterMode != null && !filterMode.isBlank() ? "?filter=" + filterMode : "");
     }
 }

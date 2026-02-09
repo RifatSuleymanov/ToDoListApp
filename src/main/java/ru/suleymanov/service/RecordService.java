@@ -1,12 +1,12 @@
 package ru.suleymanov.service;
 
-import ru.suleymanov.dao.RecordDao;
-import ru.suleymanov.entity.Record;
-import ru.suleymanov.entity.RecordStatus;
-import ru.suleymanov.entity.dto.RecordsContainerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.suleymanov.entity.Record;
+import ru.suleymanov.entity.RecordStatus;
+import ru.suleymanov.entity.dto.RecordsContainerDto;
+import ru.suleymanov.repository.RecordRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,17 +14,17 @@ import java.util.List;
 @Service
 @Transactional
 public class RecordService {
-    private final RecordDao recordDao;
+    private final RecordRepository recordRepository;
 
     @Autowired
-    public RecordService(RecordDao recordDao) {
-        this.recordDao = recordDao;
+    public RecordService(RecordRepository recordRepository) {
+        this.recordRepository = recordRepository;
     }
 
     @Transactional(readOnly = true)
     public RecordsContainerDto findAllRecords(String filterMode) {
 
-        List<Record> records = recordDao.findAllRecords();
+        List<Record> records = recordRepository.findAllByOrderByIdAsc();
 
         int numberOfDoneRecords = (int) records.stream().filter(record -> record.getStatus() == RecordStatus.DONE).count();
         int numberOfActiveRecords = (int) records.stream().filter(record -> record.getStatus() == RecordStatus.ACTIVE).count();
@@ -37,7 +37,7 @@ public class RecordService {
                 .map(Enum::name)
                 .toList();
         if (allowedFilterModes.contains(filterModeInUpperCase)) {
-            List<Record> filterRecords =  records.stream()
+            List<Record> filterRecords = records.stream()
                     .filter(record -> record.getStatus() == RecordStatus.valueOf(filterModeInUpperCase))
                     .toList();
             return new RecordsContainerDto(filterRecords, numberOfDoneRecords, numberOfActiveRecords);
@@ -47,16 +47,16 @@ public class RecordService {
     }
 
     public void saveRecord(String title) {
-        if(title != null && !title.isBlank()) {
-            recordDao.saveRecord(new Record(title));
+        if (title != null && !title.isBlank()) {
+            recordRepository.save(new Record(title));
         }
     }
 
     public void updateRecordStatus(Integer id, RecordStatus newStatus) {
-        recordDao.updateRecordStatus(id, newStatus);
+        recordRepository.update(id, newStatus);
     }
 
     public void deleteRecord(Integer id) {
-        recordDao.deleteRecord(id);
+        recordRepository.deleteById(id);
     }
 }
