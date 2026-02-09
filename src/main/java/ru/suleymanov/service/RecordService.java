@@ -1,5 +1,6 @@
 package ru.suleymanov.service;
 
+import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +55,7 @@ public class RecordService {
 
     public void updateRecordStatus(Integer id, RecordStatus newStatus) {
         recordRepository.update(id, newStatus);
+        throw new IllegalIdentifierException("Ошибка");
     }
 
     public void deleteRecord(Integer id) {
