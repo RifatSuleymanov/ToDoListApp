@@ -55,7 +55,6 @@ public class RecordService {
 
     public void updateRecordStatus(Integer id, RecordStatus newStatus) {
         recordRepository.update(id, newStatus);
-        throw new IllegalIdentifierException("Ошибка");
     }
 
     public void deleteRecord(Integer id) {

@@ -1,4 +1,4 @@
-package ru.suleymanov.exception;
+package ru.suleymanov.controller.exception;
 
 import org.springframework.boot.webmvc.error.ErrorController;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ public class GlobalExceptionHandler implements ErrorController {
 
     @RequestMapping("/error")
     public String getErrorPage(){
-        return "error-page";
+        return "public/error/error-page";
     }
 
     @ExceptionHandler(Throwable.class)
