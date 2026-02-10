@@ -25,10 +25,9 @@
   - по дате
   - по приоритету
 - Регистрация и авторизация пользователей
-  
-<img width="340" height="288" alt="image" src="https://github.com/user-attachments/assets/0a094e83-5323-48f5-a7e2-649e4e3a7932" />
-<img width="340" height="329" alt="image" src="https://github.com/user-attachments/assets/9bc5704c-7793-4032-8c84-67bef90cabd6" />
 
+<img width="340" height="329" alt="image" src="https://github.com/user-attachments/assets/9bc5704c-7793-4032-8c84-67bef90cabd6" />
+<img width="340" height="288" alt="image" src="https://github.com/user-attachments/assets/0a094e83-5323-48f5-a7e2-649e4e3a7932" />
 
 - Разграничение доступа (пользователь / администратор)
 
