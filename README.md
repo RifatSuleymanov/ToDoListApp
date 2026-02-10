@@ -6,7 +6,7 @@
 В рамках данного проекта разрабатывается веб-приложение **«Планировщик дел»** как **pet-проект**, предназначенное для изучения Spring Boot, Thymeleaf и работы с базой данных PostgreSQL.  
 Приложение позволяет пользователям эффективно планировать, отслеживать и контролировать выполнение своих дел, а администраторам — управлять системой и пользователями.
 
-<img width="340" height="320" alt="image" src="https://github.com/user-attachments/assets/3f8a589b-b017-456b-95da-a2ebca61105c" />
+<img width="270" height="240" alt="image" src="https://github.com/user-attachments/assets/3f8a589b-b017-456b-95da-a2ebca61105c" />
 
 
 ---
@@ -25,8 +25,8 @@
   - по приоритету
 - Регистрация и авторизация пользователей
 
-<img width="280" height="240" alt="image" src="https://github.com/user-attachments/assets/9bc5704c-7793-4032-8c84-67bef90cabd6" />
-<img width="280" height="240" alt="image" src="https://github.com/user-attachments/assets/0a094e83-5323-48f5-a7e2-649e4e3a7932" />
+<img width="270" height="240" alt="image" src="https://github.com/user-attachments/assets/9bc5704c-7793-4032-8c84-67bef90cabd6" />
+<img width="270" height="240" alt="image" src="https://github.com/user-attachments/assets/0a094e83-5323-48f5-a7e2-649e4e3a7932" />
 
 - Разграничение доступа (пользователь / администратор)
 
