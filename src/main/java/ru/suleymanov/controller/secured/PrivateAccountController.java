@@ -1,10 +1,12 @@
 package ru.suleymanov.controller.secured;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.suleymanov.entity.RecordStatus;
 import ru.suleymanov.entity.dto.RecordsContainerDto;
 import ru.suleymanov.service.RecordService;
@@ -37,14 +39,14 @@ public class PrivateAccountController {
         return "redirect:/account";
     }
 
-    @PostMapping( "/make-record-done")
+    @PostMapping("/make-record-done")
     public String makeRecordDone(@RequestParam int id,
                                  @RequestParam(name = "filter", required = false) String filterMode) {
         recordService.updateRecordStatus(id, RecordStatus.DONE);
         return "redirect:/account" + (filterMode != null && !filterMode.isBlank() ? "?filter=" + filterMode : "");
     }
 
-    @PostMapping( "/delete-record")
+    @PostMapping("/delete-record")
     public String deleteRecord(@RequestParam int id,
                                @RequestParam(name = "filter", required = false) String filterMode) {
         recordService.deleteRecord(id);
