@@ -1,5 +1,5 @@
 # 🗂 Планировщик дел (To-Do Planner)
-<img width="730" height="220" alt="image" src="https://github.com/user-attachments/assets/04506651-8bb3-437a-b47c-1317996d9f3b" />
+<img width="740" height="220" alt="image" src="https://github.com/user-attachments/assets/04506651-8bb3-437a-b47c-1317996d9f3b" />
 
 ## 📌 Описание проекта
 
