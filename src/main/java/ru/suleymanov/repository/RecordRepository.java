@@ -18,10 +18,6 @@ public interface RecordRepository extends JpaRepository<Record, Integer> {
     @Modifying
     @Query("UPDATE Record SET status = :status WHERE id = :id")
     void update(int id, @Param("status") RecordStatus newStatus);
-    List<Record> findAllByStatus(RecordStatus status);
 
-    List<Record> findAllByStatusAndTitleContainsOrderByIdDesc(RecordStatus status, String titlePart);
-    int countAllByStatus(RecordStatus status);
-    Optional<Record> findFirstByTitleContaining(String title);
 
 }

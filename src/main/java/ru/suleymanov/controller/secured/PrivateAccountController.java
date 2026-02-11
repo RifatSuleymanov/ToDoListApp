@@ -34,7 +34,7 @@ public class PrivateAccountController {
     }
 
     @PostMapping("/add-record")
-    public String addRecord(@RequestParam("title") String title) {
+    public String addRecord(@RequestParam String title) {
         recordService.saveRecord(title);
         return "redirect:/account";
     }
