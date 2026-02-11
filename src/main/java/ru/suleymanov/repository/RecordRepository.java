@@ -9,7 +9,6 @@ import ru.suleymanov.entity.Record;
 import ru.suleymanov.entity.RecordStatus;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface RecordRepository extends JpaRepository<Record, Integer> {

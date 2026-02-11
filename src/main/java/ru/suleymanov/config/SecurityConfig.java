@@ -54,7 +54,6 @@ public class SecurityConfig {
                         .usernameParameter("email")                                                                 // здесь указан имя поля логина
                         .passwordParameter("password")                                                              // здесь указан имя поля для пароля
                         .defaultSuccessUrl("/account", true)                               // куда перенаправлять после успешного входа
-                        //.failureUrl("/error")                                                    // куда перенаправлять при ошибке
                         .permitAll()
                 )
                 // Выход из аккаунта

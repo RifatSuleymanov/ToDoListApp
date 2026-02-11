@@ -72,7 +72,7 @@ button:hover {
     line-height: 26px;
 }
 .header-container__left {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -85,6 +85,9 @@ button:hover {
     font-size: 13px;
     font-weight: 300;
     color: red;
+}
+.header_records {
+    font-size: 22px;
 }
 
 .filter-container {
