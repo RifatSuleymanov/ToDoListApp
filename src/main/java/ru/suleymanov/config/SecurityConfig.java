@@ -3,6 +3,8 @@ package ru.suleymanov.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -13,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import ru.suleymanov.entity.User;
 import ru.suleymanov.entity.UserRole;
 import ru.suleymanov.repository.UserRepository;
@@ -50,7 +54,7 @@ public class SecurityConfig {
                         .usernameParameter("email")                                                                 // здесь указан имя поля логина
                         .passwordParameter("password")                                                              // здесь указан имя поля для пароля
                         .defaultSuccessUrl("/account", true)                               // куда перенаправлять после успешного входа
-                        .failureUrl("/error")                                                    // куда перенаправлять при ошибке
+                        //.failureUrl("/error")                                                    // куда перенаправлять при ошибке
                         .permitAll()
                 )
                 // Выход из аккаунта
@@ -64,6 +68,7 @@ public class SecurityConfig {
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
+
     //Идентификация пользователей
     @Bean
     public UserDetailsService userDetailsService() {
@@ -83,4 +88,24 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /*
+    Spring Boot не создаёт AuthenticationManager автоматически в новых версиях.
+
+    Через AuthenticationConfiguration мы получаем готовый AuthenticationManager, который знает:
+        какой UserDetailsService использовать
+        какой PasswordEncoder использовать
+    Этот бин нужен для authenticationManager.authenticate(...) в forceAutoLogin.
+    */
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    // Этот бин отвечает за сохранение SecurityContext в сессии.
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new HttpSessionSecurityContextRepository();
+    }
+
 }
