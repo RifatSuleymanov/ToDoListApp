@@ -10,10 +10,10 @@
     <div class="container">
         <div class="header-container">
             <div class="header__text">
-                <h2>ToDo List</h2>
+                <h2>Список задач</h2>
             </div>
             <div class="header__statistics">
-                <span>[[${numberOfActiveRecords}]] more to do, [[${numberOfDoneRecords}]] done</span>
+                <span>Осталось дел: [[${numberOfActiveRecords}]], выполнено: [[${numberOfDoneRecords}]]</span>
             </div>
         </div>
 
@@ -24,17 +24,17 @@
                 <div class="filter-form__input">
                     <input th:checked="${filter != 'active' and filter != 'done'}" type="radio"
                            id="filter-form__status_all" name="filter" value="all">
-                    <label for="filter-form__status_all">All</label>
+                    <label for="filter-form__status_all">Все</label>
                 </div>
                 <div class="filter-form__input">
                     <input th:checked="${filter == 'active'}" type="radio" id="filter-form__status_active" name="filter"
                            value="active">
-                    <label for="filter-form__status_active">Active</label>
+                    <label for="filter-form__status_active">Активные</label>
                 </div>
                 <div class="filter-form__input">
                     <input th:checked="${filter == 'done'}" type="radio" id="filter-form__status_done" name="filter"
                            value="done">
-                    <label for="filter-form__status_done">Done</label>
+                    <label for="filter-form__status_done">Выполненные</label>
                 </div>
                 <button type="submit">ОК</button>
             </form>
@@ -43,9 +43,9 @@
         <div th:with="isRecordsEmpty=${records == null or records.isEmpty()}" class="records-container">
 
             <div th:if="${isRecordsEmpty}" th:switch="${#strings.toLowerCase(param.filter)}" class="hint">
-                <span th:case="'active'">There are no active tasks!</span>
-                <span th:case="'done'">There are no done tasks!</span>
-                <span th:case="*">There are no tasks at all, try to add new one!</span>
+                <span th:case="'active'">Нет активных задач!</span>
+                <span th:case="'done'">Нет выполненных задач!</span>
+                <span th:case="*">Задач пока нет, попробуйте добавить новую!</span>
             </div>
 
             <div th:if="${!isRecordsEmpty}" th:each="record: ${records}" class="record">
@@ -94,8 +94,8 @@
 
         <div class="management-container">
             <form action="/account/add-record" method="post" class="management-form">
-                <input type="text" name="title" placeholder="What needs to be done..." class="management-form__input">
-                <button type="submit" class="management-form__button">Add Record</button>
+                <input type="text" name="title" placeholder="Что нужно сделать..." class="management-form__input">
+                <button type="submit" class="management-form__button">Добавить задачу</button>
             </form>
         </div>
     </div>

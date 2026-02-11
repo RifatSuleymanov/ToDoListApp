@@ -9,26 +9,26 @@
 <div class="page-wrapper">
     <div class="container">
         <div class="header-container">
-            <h2 class="header-container__text">Login</h2>
+            <h2 class="header-container__text">Вход</h2>
         </div>
         <div class="form-container">
             <form action="/login" method="post" class="form-container__form">
                 <div class="form-container__input-wrapper">
-                    <input type="email" name="email" placeholder="Enter your email" class="form-container__input" required>
+                    <input type="email" name="email" placeholder="Введите ваш email" class="form-container__input" required>
                 </div>
                 <div class="form-container__input-wrapper">
-                    <input type="password" name="password" placeholder="Enter your password" class="form-container__input" required>
+                    <input type="password" name="password" placeholder="Введите пароль" class="form-container__input" required>
                 </div>
                 <div th:if="${isAuthenticationField}" class="form-container__warning-wrapper">
-                    <span class="form-container__warning">Wrong email or password</span>
+                    <span class="form-container__warning">Неправильный email или пароль</span>
                 </div>
                 <div class="form-container__button-wrapper">
-                    <button type="submit" class="form-container__button">Log in</button>
+                    <button type="submit" class="form-container__button">Войти</button>
                 </div>
             </form>
         </div>
         <div class="footer-link-container">
-            <span class="footer-link-container__text">Don't have an account? <a href="/registration" class="footer-link-container__link">Sign up</a></span>
+            <span class="footer-link-container__text">Нет аккаунта? <a href="/registration" class="footer-link-container__link">Зарегистрироваться</a></span>
         </div>
     </div>
 </div>
