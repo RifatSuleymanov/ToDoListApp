@@ -7,26 +7,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.suleymanov.entity.RecordStatus;
+import ru.suleymanov.entity.RecordStatus;import ru.suleymanov.entity.User;
 import ru.suleymanov.entity.dto.RecordsContainerDto;
 import ru.suleymanov.service.RecordService;
+import ru.suleymanov.service.UserService;
 
 
 @Controller()
 @RequestMapping("/account")
 public class PrivateAccountController {
 
+    private final UserService userService;
     private final RecordService recordService;
 
-
     @Autowired
-    public PrivateAccountController(RecordService recordService) {
+    public PrivateAccountController(RecordService recordService, UserService userService) {
         this.recordService = recordService;
+        this.userService = userService;
     }
 
     @GetMapping("")
     public String getMainPage(Model model, @RequestParam(name = "filter", required = false) String filterMode) {
+        User user = userService.getCurrentUser();
         RecordsContainerDto container = recordService.findAllRecords(filterMode);
+        model.addAttribute("userName", user.getName());
         model.addAttribute("records", container.getRecords());
         model.addAttribute("numberOfDoneRecords", container.getNumberOfDoneRecords());
         model.addAttribute("numberOfActiveRecords", container.getNumberOfActiveRecords());

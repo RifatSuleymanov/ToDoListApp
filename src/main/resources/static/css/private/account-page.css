@@ -60,27 +60,31 @@ button:hover {
 }
 
 .header-container {
-    display: flex;
+    display: block;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .header__text h2 {
     margin: 0;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 26px;
+}
+.header-container__left {
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .header__statistics {
     display: flex;
-    align-items: end;
+    align-items: center;
 }
 
 .header__statistics span {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 300;
-    color: #a7a7a7;
+    color: red;
 }
 
 .filter-container {
