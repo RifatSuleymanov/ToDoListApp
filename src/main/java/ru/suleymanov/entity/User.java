@@ -39,4 +39,16 @@ public class User {
         this.password = password;
         this.userRole = userRole;
     }
+
+    public boolean isSimpleUserRole() {
+        return this.userRole == UserRole.USER;
+    }
+
+    public boolean isSimpleAdminRole() {
+        return this.userRole == UserRole.ADMIN;
+    }
+
+    public boolean isSimpleSuperAdminRole() {
+        return this.userRole == UserRole.SUPER_ADMIN;
+    }
 }

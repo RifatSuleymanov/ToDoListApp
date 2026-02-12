@@ -42,8 +42,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/registration", "/error").permitAll()                         // url доступны всем пользователям
                         .requestMatchers("/css/**").permitAll()                                                  // доступ для стилей css,js,image
-                        .requestMatchers("/account/**").hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name())  // url доступны для user
-                        .requestMatchers("/admin/**").hasRole("ADMIN")                                           // url доступны для админа
+                        .requestMatchers("/account/**")
+                            .hasAnyRole("USER", "ADMIN", "SUPER_ADMIN")                                     // url доступны для всех
+                        .requestMatchers("/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")                  // url доступны для админа и superAdmin
+                        .requestMatchers("/super-admin/**").hasRole("SUPER_ADMIN")                               // url доступны для superAdmin
                         .anyRequest().authenticated()
 
                 )
