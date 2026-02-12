@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Header-fragment</title>
@@ -14,7 +14,7 @@
                 <div class="navbar-container__controls">
                     <a href="/account" class="navbar-container__controls-link">Моя страница</a>
                 </div>
-                <div class="navbar-container__controls">
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_SUPER_ADMIN')" class="navbar-container__controls">
                     <a href="/admin" class="navbar-container__controls-link">Администрирование</a>
                 </div>
             </div>
