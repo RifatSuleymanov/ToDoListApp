@@ -12,11 +12,11 @@ import java.util.List;
 
 @Repository
 public interface RecordRepository extends JpaRepository<Record, Integer> {
-    List<Record> findAllByOrderByIdAsc();
-
     @Modifying
     @Query("UPDATE Record SET status = :status WHERE id = :id")
     void update(int id, @Param("status") RecordStatus newStatus);
+
+    List<Record> findByUserIdOrderByIdAsc(Long user_id);
 
 
 }

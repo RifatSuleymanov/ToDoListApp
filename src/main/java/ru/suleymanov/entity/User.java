@@ -3,8 +3,8 @@ package ru.suleymanov.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -29,6 +29,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private UserRole userRole;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Record> records;
 
     public User(String name, String email, String password, UserRole userRole) {
         this.name = name;
